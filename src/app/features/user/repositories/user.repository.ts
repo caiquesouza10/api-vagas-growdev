@@ -1,7 +1,7 @@
-import { UserEntity } from "../../../shared/database/entities/user.entity";
 import { Database } from "../../../../main/database/database.connection";
-import { User } from "../../../models/user.model";
 import { UserType } from "../../../models/user-type.model";
+import { User } from "../../../models/user.model";
+import { UserEntity } from "../../../shared/database/entities/user.entity";
 
 export class UserRepository {
   private repository = Database.connection.getRepository(UserEntity);
@@ -31,7 +31,9 @@ export class UserRepository {
       type: user.type,
       enterpriseName: user.enterpriseName,
     });
-    await this.repository.save(entity);
+
+    const teste = await this.repository.save(entity);
+    console.log(teste);
   }
 
   public async list(type: UserType) {

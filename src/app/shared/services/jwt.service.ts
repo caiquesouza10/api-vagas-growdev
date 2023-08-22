@@ -1,16 +1,14 @@
 import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
-
 dotenv.config();
 
 export class JwtService {
-  // quando faz o login
+  // QUANDO FAZ O LOGIN
   public createToken(data: any): string {
-    const token = jwt.sign(data, process.env.JWT_SECRET!);
-    return token;
+    return jwt.sign(data, process.env.JWT_SECRET!);
   }
 
-  // vai p o middleware - só p saber se é válido ou não
+  // SÓ PARA SABER SE É VÁLIDO OU NÃO
   public verifyToken(token: string): boolean {
     try {
       jwt.verify(token, process.env.JWT_SECRET!);
@@ -20,7 +18,7 @@ export class JwtService {
     }
   }
 
-  // precisa da informação
+  // PRECISA DA INFORMAÇÃO
   public decodeToken(token: string): any {
     const result = jwt.decode(token);
 

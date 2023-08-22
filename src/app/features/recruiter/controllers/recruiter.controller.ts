@@ -1,19 +1,20 @@
 import { Request, Response } from "express";
 import { CreateRecruiterUsecase } from "../usecases/create-recruiter.usecase";
-import { HttpResponse } from "../../../shared/util/http-response.adapter";
-import { ListRecruitersUsecase } from "../usecases/list-recruiter.usecase";
+import { HttpResponse } from "../../../shared/util";
+import { ListRecruitersUsecase } from "../usecases/list-recruiters.usecase";
 
 export class RecruiterController {
   public async create(req: Request, res: Response) {
     try {
       // 1 - parametros
-      const { name, email, password, entrepriseName } = req.body;
-      //   validações...
+      const { email, name, password, enterpriseName } = req.body;
       if (!email) {
         return HttpResponse.fieldNotProvided(res, "Email");
       }
+
       // 2 - processamento
       const result = await new CreateRecruiterUsecase().execute(req.body);
+
       // 3 - resposta
       return res.status(result.code).send(result);
     } catch (error: any) {
@@ -28,6 +29,7 @@ export class RecruiterController {
     try {
       // 2 - processamento
       const result = await new ListRecruitersUsecase().execute();
+
       // 3 - resposta
       return res.status(result.code).send(result);
     } catch (error: any) {

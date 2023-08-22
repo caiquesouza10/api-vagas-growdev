@@ -14,14 +14,14 @@ export class JobRepository {
       enterprise: job.enterprise,
       limitDate: job.limitDate,
       isActive: job.isActive,
-      idRecruiter: job.recruiter.id,
+      idRecuiter: job.recruiter.id,
       maxCandidates: job.maxCandidates,
     });
 
     await this.repository.save(entity);
   }
 
-  public async getById(id: string): Promise<Job | undefined> {
+  public async getById(id: string): Promise<any | undefined> {
     const result = await this.repository.findOne({
       where: {
         id,
@@ -33,6 +33,20 @@ export class JobRepository {
     });
 
     return JobRepository.mapRowToModelCandidates(result);
+  }
+
+  public async list(idRecuiter: string): Promise<any> {
+    const result = await this.repository.find({
+      where: {
+        idRecuiter,
+      },
+      relations: {
+        recruiter: true,
+        jobApplication: { candidate: true },
+      },
+    });
+
+    return result.map((job) => JobRepository.mapRowToModelCandidates(job));
   }
 
   public static mapRowToModelCandidates(row: JobEntity | null) {

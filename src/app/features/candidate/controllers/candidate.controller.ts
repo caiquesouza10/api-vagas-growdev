@@ -29,7 +29,6 @@ export class CandidateController {
       });
     }
   }
-
   public async list(req: Request, res: Response) {
     try {
       // 2 - processamento {data: Array}

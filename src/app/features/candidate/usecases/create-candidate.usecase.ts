@@ -16,7 +16,6 @@ export class CreateCandidateUsecase implements Usecase {
 
     // 2 - verificar se o user ja existe (email) OK
     const repository = new UserRepository();
-
     const user = await repository.getByEmail(params.email);
 
     // 3 - Se user existe com o mesmo email, retorna erro 400 OK
@@ -38,7 +37,6 @@ export class CreateCandidateUsecase implements Usecase {
 
     // 5 - Chama o respository para salva o cara no banco OK
     await repository.create(candidate);
-
     const cacheRepository = new CacheRepository();
     await cacheRepository.delete("candidates");
 

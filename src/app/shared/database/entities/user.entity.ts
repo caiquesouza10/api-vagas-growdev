@@ -15,7 +15,7 @@ export class UserEntity {
   @PrimaryColumn({ type: "uuid" })
   id: string;
 
-  @Column() //decorator de propriedade
+  @Column()
   name: string;
 
   @Column()
@@ -35,6 +35,8 @@ export class UserEntity {
 
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
+
+  // RELATIONS
 
   @OneToMany(() => JobEntity, (entity) => entity.recruiter)
   job: JobEntity[];

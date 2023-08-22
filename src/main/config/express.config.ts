@@ -1,10 +1,10 @@
 import cors from "cors";
-
 import express, { Request, Response } from "express";
 import { recruiterRoutes } from "../../app/features/recruiter/routes/recruiter.routes";
 import { loginRoutes } from "../../app/features/user/routes/login.routes";
 import { candidateRoutes } from "../../app/features/candidate/routes/candidate.routes";
-import { jobApplicationRoutes } from "../../app/features/job-application/routes/job-application.routes";
+import { jobRoute } from "../../app/features/job/routes/job.routes";
+import { jobApplicationRoutes } from "../../app/features/job-aplication/routes/job-application.routes";
 
 export const createApp = () => {
   const app = express();
@@ -19,7 +19,7 @@ export const createApp = () => {
   app.use("/recruiter", recruiterRoutes());
   app.use("/auth", loginRoutes());
   app.use("/candidate", candidateRoutes());
-  // app.use("/job", jobRoute());
+  app.use("/job", jobRoute());
   app.use("/application", jobApplicationRoutes());
 
   return app;
