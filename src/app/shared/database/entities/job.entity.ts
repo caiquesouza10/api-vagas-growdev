@@ -29,7 +29,7 @@ export class JobEntity {
   isActive: boolean;
 
   @Column({ name: "id_recruiter", type: "uuid" })
-  idRecuiter: string;
+  idRecruiter: string;
 
   @Column({ name: "max_candidates", nullable: true })
   maxCandidates: number;
@@ -39,8 +39,6 @@ export class JobEntity {
 
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
-
-  // RELATIONS
 
   @ManyToOne(() => UserEntity, (entity) => entity.job)
   @JoinColumn({ name: "id_recruiter", referencedColumnName: "id" })

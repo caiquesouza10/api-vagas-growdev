@@ -1,7 +1,6 @@
 import { v4 } from "uuid";
 import { Recruiter } from "./recruiter.model";
 import { JobEntity } from "../shared/database/entities/job.entity";
-import { UserEntity } from "../shared/database/entities/user.entity";
 
 export class Job {
   private _id: string;
@@ -16,7 +15,6 @@ export class Job {
   ) {
     this._id = v4();
   }
-
   public get id(): string {
     return this._id;
   }
@@ -46,7 +44,7 @@ export class Job {
       enterprise: this._enterprise,
       limitDate: this._limitDate,
       isActive: this._isActive,
-      idRecruiter: this._recruiter?.id,
+      recruiter: this._recruiter?.name,
       maxCandidate: this._maxCandidates,
     };
   }

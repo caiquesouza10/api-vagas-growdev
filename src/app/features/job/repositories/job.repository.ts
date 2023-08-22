@@ -14,14 +14,14 @@ export class JobRepository {
       enterprise: job.enterprise,
       limitDate: job.limitDate,
       isActive: job.isActive,
-      idRecuiter: job.recruiter.id,
+      idRecruiter: job.recruiter.id,
       maxCandidates: job.maxCandidates,
     });
 
     await this.repository.save(entity);
   }
 
-  public async getById(id: string): Promise<any | undefined> {
+  public async getById(id: string): Promise<Job | undefined> {
     const result = await this.repository.findOne({
       where: {
         id,

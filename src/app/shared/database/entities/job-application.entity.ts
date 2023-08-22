@@ -4,7 +4,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -31,8 +30,7 @@ export class JobApplicationEntity {
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
 
-  // RELATIONS
-
+  //   Ligações
   @ManyToOne(() => UserEntity, (entity) => entity.jobApplication)
   @JoinColumn({ name: "id_candidate", referencedColumnName: "id" })
   candidate: UserEntity;
